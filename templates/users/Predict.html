@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block base_title %}
+    爬虫考研调剂信息
+{% endblock base_title %}
+
+
+{% block base_content %}
+    <!-- 右边主体 -->
+    <div class="app-content">
+        <div class="app-content-body fade-in-up">
+            <div class="padder" style="padding-top: 10px;">
+
+                <div class="col-md-12" style="padding-left: 0; padding-right: 0;">
+                    <div class="panel panel-default" id="body-content">
+                        <div class="panel-heading">
+                            <div style="display: block; border-left: 5px solid #1c2b36; padding-left: 10px; font-size: 20px; font-weight: bolder; line-height: 25px;color: #1c2b36;">
+                                大数据爬虫分析
+                            </div>
+                        </div>
+
+                        <div class="panel-body" id="table_content">
+                            <div style="font-size: 15px;color: red" >这里如08代表工学,0812代表计算机科学，年份请不要超过今年!</div>
+                            <div class="row" style="margin-top: 3%;">
+                                <form method="post" action="{% url 'platform_management:platform_user_predict' %}">
+                                    <div class="col-md-3" style="font-size: 20px">专业类型：<input type="text" name="zhuanye_1"placeholder="输入专业大类代码"></div>
+                                <div class="col-md-3" style="font-size: 20px">专业代码：<input type="text"name="zhuanye_2" placeholder="输入专业代码"></div>
+                                <div class="col-md-3" style="font-size: 20px">年份：<input type="text" name="year" placeholder="输入年份"></div>
+                                <div class="col-md-3" style="font-size: 20px"><button name="begin">开始查询</button></div>
+                                </form>
+                            </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <textarea class="form-control" id="content" style="font-size:18px"
+                                              name="content" rows="20" spellcheck="false">{{ datas }}</textarea>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock base_content %}

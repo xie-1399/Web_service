@@ -1,0 +1,58 @@
+{% load staticfiles %}
+{% load static %}
+{% load user_tags %}
+{% load message_tags %}
+{% load host_tags %}
+{% load op_record_tags %}
+{% load doc_tags %}
+{% load online_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>欢迎界面</title>
+   <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_1.css'%}" media="screen" type="text/css" />
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/app.css' %}" rel="stylesheet">
+
+    <!-- js -->
+    <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+<body background="{% static 'admin/img/b4.jpg' %}">
+<div style="text-align:center;clear:both;position:absolute;top:0;left:260px">
+</div>
+<div ><a href="{% url 'users:index' %}" style="font-size: 40px;text-align: center;color: whitesmoke">开始</a></div>
+<canvas class="canvas"></canvas>
+
+<div class="help"></div>
+
+<div class="ui">
+  <input class="ui-input" type="" />
+  <span class="ui-return">↵</span>
+</div>
+
+<div class="overlay">
+  <div class="tabs">
+    <div class="tabs-labels"><span class="tabs-label"></span><span class="tabs-label"></span><span class="tabs-label"></span></div>
+    <div class="tabs-panels">
+      <ul class="tabs-panel commands">
+        <li ><span class="commands-item-title"></span><span class="commands-item-info" data-demo="Hello :)"></span><span class="commands-item-action"></span></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="{% static 'js/index_1.js' %}"></script>
+
+</body>
+
+</html>

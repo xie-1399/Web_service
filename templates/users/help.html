@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block base_title %}
+    项目须知
+{% endblock base_title %}
+
+
+{% block base_content %}
+    <!-- 右边主体 -->
+    <div class="app-content">
+        <div class="app-content-body fade-in-up">
+            <div class="padder" style="padding-top: 10px;">
+
+                <div class="col-md-12" style="padding-left: 0; padding-right: 0;">
+                    <div class="panel panel-default" id="body-content">
+                        <div class="panel-heading">
+                            <div style="display: block; border-left: 5px solid #1c2b36; padding-left: 10px; font-size: 20px; font-weight: bolder; line-height: 25px;color: #1c2b36;">
+                                项目须知
+                            </div>
+                        </div>
+
+                        <div class="panel-body" id="table_content">
+
+                            <div class="row" style="margin-top: 5%;">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <p class="m-t"></p>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                    <!-- 消息主体 -->
+                                                    <div class="form-group" style="margin-bottom: 0;">
+                                                            <textarea class="form-control" id="content" style="font-size:18px"
+                                                                      name="content" rows="20" spellcheck="false"></textarea>
+                                                    </div>
+                                                <script>
+                                                    var ele = document.getElementById("content");
+                                                    ele.value =
+                                                        "本项目是由中国石油大学华东（UPC）计算机科学与技术专业团队开发，项目为Web数据库系统专业课课程作业，如果您觉得我们的项目有可取之处，请不要吝啬你们的stars，同时也感谢部分开源插件的贡献者，总的来说，该项目的完成付出了我们团队每一个人的心血，也衷心祝愿我们每一位成员前程似锦，也非常感谢老师的教导，青山遮不住，毕竟东流去！";
+                                                </script>
+                                                    <div style="margin-top: 15px;">
+                                                        <a href="{% url 'users:index' %}"><button type="submit" class="btn btn-black block full-width m-b"
+                                                                style="color: white;">我已了解该项目
+                                                        </button></a>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <p class="m-t"></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock base_content %}

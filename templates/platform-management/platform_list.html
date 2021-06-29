@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load platfom_tags %}
+
+
+{% block base_title %}
+    {{ title }}
+{% endblock base_title %}
+
+
+{% block base_content %}
+    <!-- 右边主体 -->
+    <div class="app-content">
+        <div class="app-content-body fade-in-up">
+            <div class="padder" style="padding-top: 10px;">
+
+                <div class="col-md-12" style="padding-left: 0; padding-right: 0;">
+                    <div class="panel panel-default" id="body-content">
+                        <div class="panel-heading" >
+                            <div style="display: block; border-left: 5px solid #1c2b36; padding-left: 10px; font-size: 20px; font-weight: bolder; line-height: 25px;color: #1c2b36;">
+                                {{ title }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="main" style="width: 1500px;height:1000px;"></div>
+{% block js %}
+	<script src="{% static 'js/echarts.js' %}"></script>
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <script src="{% static 'js/china.js' %}"></script>
+    <script>
+        var optionMap = {
+            backgroundColor: '#FFFFFF',
+            backgroundColor: 'transparent',  // 背景透明色
+            title: {
+                subtext: '',
+                x:'center',
+                textStyle:{
+                    color: '#CFB53B',
+                    fontfamily:'Microsoft YaHei'
+                }
+            },
+            tooltip : {
+                trigger: 'item'
+            },
+
+            //左侧小导航图标
+            visualMap: {
+                show : false,
+                x: 'left',
+                y: 'center',
+                splitList: [
+                    {start: 700, end:800},{start: 400, end: 700},
+                    {start: 300, end: 400},{start: 100, end: 300},
+                    {start: 50, end: 100},{start: 0, end: 50},
+                ],
+                color: ['#5475f5', '#9feaa5', '#85daef','#74e2ca', '#e6ac53', '#9fb5ea']
+            },
+
+            //配置属性
+            series: [{
+                name: '数据',
+                type: 'map',
+                mapType: 'china',
+                roam: true,
+                label: {
+                    normal: {
+                        show: true  //省份名称
+                    },
+                    emphasis: {
+                        show: false
+                    }
+                },
+                data:[
+    {
+        "name": "北京",
+        "value": {{ platforms_bei }}
+    },
+    {
+        "name": "天津",
+        "value": {{ platforms_tian }}
+    },
+    {
+        "name": "上海",
+        "value": {{ platforms_shang }}
+    },
+    {
+        "name": "重庆",
+        "value": {{ platforms_chong }}
+    },
+    {
+        "name": "河北",
+        "value": {{ platforms_hebei }}
+    },
+    {
+        "name": "河南",
+        "value": {{ platforms_henan }}
+    },
+    {
+        "name": "云南",
+        "value": {{ platforms_yun }}
+    },
+    {
+        "name": "辽宁",
+        "value": {{ platforms_liao }}
+    },
+    {
+        "name": "黑龙江",
+        "value": {{ platforms_hei }}
+    },
+    {
+        "name": "湖南",
+        "value": {{ platforms_hunan }}
+    },
+    {
+        "name": "安徽",
+        "value": {{ platforms_an }}
+    },
+    {
+        "name": "山东",
+        "value": {{ platforms_shan }},
+    },
+    {
+        "name": "新疆",
+        "value": {{ platforms_xin }}
+    },
+    {
+        "name": "江苏",
+        "value": {{ platforms_jiang }}
+    },
+    {
+        "name": "浙江",
+        "value": {{ platforms_zhe }}
+    },
+    {
+        "name": "江西",
+        "value": {{ platforms_jiangxi }}
+    },
+    {
+        "name": "湖北",
+        "value": {{ platforms_hubei }}
+    },
+    {
+        "name": "广西",
+        "value": {{ platforms_guangxi }}
+    },
+    {
+        "name": "甘肃",
+        "value": {{ platforms_gan }}
+    },
+    {
+        "name": "山西",
+        "value": {{ platforms_shanxi }}
+    },
+    {
+        "name": "内蒙古",
+        "value": {{ platforms_nei }}
+    },
+    {
+        "name": "陕西",
+        "value": {{ platforms_shan_xi }}
+    },
+    {
+        "name": "吉林",
+        "value": {{ platforms_ji }}
+    },
+    {
+        "name": "福建",
+        "value": {{ platforms_fu }}
+    },
+    {
+        "name": "贵州",
+        "value": {{ platforms_gui }}
+    },
+    {
+        "name": "广东",
+        "value": {{ platforms_guangdong }}
+    },
+    {
+        "name": "青海",
+        "value": {{ platforms_qinghai }}
+    },
+    {
+        "name": "西藏",
+        "value": {{ platforms_xizang }}
+    },
+    {
+        "name": "四川",
+        "value": {{ platforms_sichuan }}
+    },
+    {
+        "name": "宁夏",
+        "value": {{ platforms_ningxia }}
+    },
+    {
+        "name": "海南",
+        "value": {{ platforms_hainan }}
+    },
+    {
+        "name": "台湾",
+        "value": {{ platforms_taiwan }}
+    },
+    {
+        "name": "香港",
+        "value": {{ platforms_xiang }}
+    },
+    {
+        "name": "澳门",
+        "value": {{ platforms_ao }}
+    }
+]
+                }]
+            };
+        //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(optionMap);
+    </script>
+ {% endblock %}
+        </div>
+    </div>
+
+{% endblock base_content %}
+
+{% block base_footer_html %}
+{% endblock base_footer_html %}

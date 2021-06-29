@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load platfom_tags %}
+
+
+{% block base_title %}
+    {{ title }}
+{% endblock base_title %}
+
+{% block base_header_css %}
+    <link rel="stylesheet" href="{% static 'css/weather.css' %}">
+    <script src="{% static 'js/Chart.min.js' %}"></script>
+{% endblock base_header_css %}
+
+{% block base_content %}
+    <!-- 右边主体 -->
+    <div class="app-content">
+        <div class="app-content-body fade-in-up">
+            <div class="padder" style="padding-top: 10px;">
+
+                <div class="col-md-12" style="padding-left: 0; padding-right: 0;">
+                    <div class="panel panel-default" id="body-content">
+                        <div class="panel-heading" >
+                            <div style="display: block; border-left: 5px solid #1c2b36; padding-left: 10px; font-size: 20px; font-weight: bolder; line-height: 25px;color: #1c2b36;">
+                                {{ title }}
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding-left: 0; padding-right: 0; ">
+                                        <div style="padding-left: 0; padding-right: 5px; padding-top: 5px;">
+                                            <div class="panel panel-default" style="margin-bottom: 0;"
+                                                 id="chart_content">
+                                                <div class="panel-heading pos-rlt"
+                                                     style="background-color: #fff;color: #1c2b36;">
+                                                    <span>就业统计饼状图</span>
+                                                </div>
+                                                <div class="panel-body" >
+                                                    <canvas id="canvas_tr" height="135"></canvas>
+                                                    <script>
+                                                        var ctx = document.getElementById("canvas_tr").getContext("2d");
+                                                        var data = {{ tr_lists|safe }}
+                                                        // 传入数据的最大值，用于 y 轴切分
+                                                        var myChart = new Chart(ctx, {
+                                                            type: 'pie', // line 表示是 曲线图，当然也可以设置其他的图表类型 如柱形图 : bar  或者其他
+                                                            data:{
+                                                                    datasets: [
+                                                                                    {
+                                                                                        backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)',],
+                                                                                        data: [324,229,451,579]
+                                                                                    }
+                                                                                ],
+
+                                                                        // These labels appear in the legend and in the tooltips when hovering different arcs
+                                                                        labels: ["2012", "2013", "2014","2015"]
+                                                            },
+                                                            options: {
+                                                                        animation: {
+
+                                                                        }
+                                                            }
+                                                        });
+                                                    </script>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div style="padding-left: 0; padding-right: 5px; padding-top: 5px;">
+                                            <div class="panel panel-default" style="margin-bottom: 0;"
+                                                 id="chart_content">
+                                                <div class="panel-heading pos-rlt"
+                                                     style="background-color: #fff;color: #1c2b36;">
+                                                    <span>就业统计极地图</span>
+                                                </div>
+
+                                                <div class="panel-body">
+                                                    <canvas id="canvas_dep" height="135"></canvas>
+
+                                                    <script>
+                                                        var ctx = document.getElementById("canvas_dep").getContext("2d");
+                                                        // 传入数据
+                                                        var data = {{ tr_lists|safe }}
+                                                        var myChart = new Chart(ctx, {
+                                                            type: 'polarArea', // line 表示是 曲线图，当然也可以设置其他的图表类型 如柱形图 : bar  或者其他
+                                                            data:{
+                                                                    datasets: [
+                                                                                    {
+                                                                                        backgroundColor: ['rgba(254, 67, 101, 0.5)', 'rgba(252, 157, 154, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)',],
+                                                                                        data: [324,229,451,579]
+                                                                                    }
+                                                                                ],
+
+                                                                        // These labels appear in the legend and in the tooltips when hovering different arcs
+                                                                        labels: ["2012", "2013", "2014","2015"]
+                                                            },
+                                                            options: {
+                                                                        animation: {
+
+                                                                        }
+                                                            }
+                                                        });
+
+                                                    </script>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                                <div class="col-md-4" style="padding-left: 0; padding-right: 0; ">
+                                        <div style="padding-left: 0; padding-right: 5px; padding-top: 5px;">
+                                            <div class="panel panel-default" style="margin-bottom: 0;"
+                                                 id="chart_content">
+                                                <div class="panel-heading pos-rlt"
+                                                     style="background-color: #fff;color: #1c2b36;">
+                                                    <span>男女比例环形图</span>
+                                                </div>
+                                                <div class="panel-body" >
+                                                    <canvas id="canvas_tr_sex" height="135"></canvas>
+                                                    <script>
+                                                        var ctx = document.getElementById("canvas_tr_sex").getContext("2d");
+                                                        // 传入数据的最大值，用于 y 轴切分
+                                                        var myChart = new Chart(ctx, {
+                                                            type: 'doughnut', // line 表示是 曲线图，当然也可以设置其他的图表类型 如柱形图 : bar  或者其他
+                                                            data:{
+                                                                    datasets: [
+                                                                                    {
+                                                                                        backgroundColor: ['rgba(131, 175, 155, 1)','rgba(200, 200, 169, 1)'],
+                                                                                        data: [914,635]
+                                                                                    }
+                                                                                ],
+
+                                                                        // These labels appear in the legend and in the tooltips when hovering different arcs
+                                                                        labels: ["男", "女"]
+                                                            },
+                                                            options: {
+                                                                        animation: {
+                                                                        }
+                                                            }
+                                                        });
+                                                    </script>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div style="padding-left: 0; padding-right: 5px; padding-top: 5px;">
+                                            <div class="panel panel-default" style="margin-bottom: 0;"
+                                                 id="chart_content">
+                                                <div class="panel-heading pos-rlt"
+                                                     style="background-color: #fff;color: #1c2b36;">
+                                                    <span>男女比例柱状图</span>
+                                                </div>
+
+                                                <div class="panel-body">
+                                                    <canvas id="canvas_dep_sex" height="135"></canvas>
+
+                                                    <script>
+                                                        var ctx = document.getElementById("canvas_dep_sex").getContext("2d");
+                                                        var myChart = new Chart(ctx, {
+                                                            type: 'bar', // line 表示是 曲线图，当然也可以设置其他的图表类型 如柱形图 : bar  或者其他
+                                                            data:{
+                                                                    datasets: [
+                                                                                    {
+                                                                                        backgroundColor: ['rgba(131, 175, 155, 1)','rgba(200, 200, 169, 1)'],
+                                                                                        data: [914,635],
+                                                                                        label:'男女比例'
+                                                                                    }
+                                                                                ],
+
+                                                                        // These labels appear in the legend and in the tooltips when hovering different arcs
+                                                                        labels: ["男", "女"]
+                                                            },
+                                                            options: {
+                                                                        animation: {
+
+                                                                        }
+                                                            }
+                                                        });
+
+                                                    </script>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                                <div class="col-md-4" style="padding-left: 0; padding-right: 0; ">
+                                        <div style="padding-left: 0; padding-right: 5px; padding-top: 5px;">
+                                            <div class="panel panel-default" style="margin-bottom: 0;"
+                                                 id="chart_content">
+                                                <div class="panel-heading pos-rlt"
+                                                     style="background-color: #fff;color: #1c2b36;">
+                                                    <span>省份信息雷达图</span>
+                                                </div>
+                                                <div class="panel-body" >
+                                                    <canvas id="canvas_tr_province" height="135"></canvas>
+                                                    <script>
+                                                        var ctx = document.getElementById("canvas_tr_province").getContext("2d");
+                                                        // 传入数据的最大值，用于 y 轴切分
+                                                        var myChart = new Chart(ctx, {
+                                                            type: 'pie', // line 表示是 曲线图，当然也可以设置其他的图表类型 如柱形图 : bar  或者其他
+                                                            data:{
+                                                                    datasets: [
+                                                                                    {
+                                                                                        backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)',],
+                                                                                        data:[781,125,482,160]
+                                                                                    }
+                                                                                ],
+
+                                                                        // These labels appear in the legend and in the tooltips when hovering different arcs
+                                                                        labels: ["本省", "西部", "东部","中部"]
+                                                            },
+                                                            options: {
+                                                                        animation: {
+
+                                                                        }
+                                                            }
+                                                        });
+                                                    </script>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div style="padding-left: 0; padding-right: 5px; padding-top: 5px;">
+                                            <div class="panel panel-default" style="margin-bottom: 0;"
+                                                 id="chart_content">
+                                                <div class="panel-heading pos-rlt"
+                                                     style="background-color: #fff;color: #1c2b36;">
+                                                    <span>省份信息折线图</span>
+                                                </div>
+
+                                                <div class="panel-body">
+                                                    <canvas id="canvas_dep_province" height="135"></canvas>
+
+                                                    <script>
+                                                        var ctx = document.getElementById("canvas_dep_province").getContext("2d");
+                                                        var myChart = new Chart(ctx, {
+                                                            type: 'line', // line 表示是 曲线图，当然也可以设置其他的图表类型 如柱形图 : bar  或者其他
+                                                            data:{
+                                                                    datasets: [
+                                                                                    {
+                                                                                        backgroundColor:'#ffce56',
+                                                                                        data:[781,125,482,160],
+                                                                                        label:'折线趋势',
+                                                                                    }
+                                                                                ],
+
+                                                                        // These labels appear in the legend and in the tooltips when hovering different arcs
+                                                                        labels: ["本省", "西部", "东部","中部"]
+                                                            },
+                                                            options: {
+                                                                        animation: {
+
+                                                                        }
+                                                            }
+                                                        });
+
+                                                    </script>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                    </div>
+                </div>
+                <div><a href="https://chartjs.bootcss.com/docs/" style="margin-right: 10px">更多请参考chart.js官方文档</a></div>
+            </div>
+    </div>
+    </div>
+
+{% endblock base_content %}
+
+{% block base_footer_html %}
+{% endblock base_footer_html %}
